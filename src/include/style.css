@@ -228,4 +228,5 @@ i
     text-align: left;
     font-size: small;
     padding: 15px;
+    width: calc(100% - 30px);
 }
