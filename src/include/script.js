@@ -7,8 +7,11 @@ function pog()
     if(naam_loses >= 25)
     {
         var naamloos = document.getElementById("naamloos");
-        naamloos.src="include/angery.png";
-        naamloos.id = "naamshake";
+        if(naamloos != null)
+        {
+            naamloos.src="include/angery.png";
+            naamloos.id = "naamshake";
+        }
     }
 }
 
