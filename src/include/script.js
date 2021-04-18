@@ -9,7 +9,7 @@ function pog()
         var naamloos = document.getElementById("naamloos");
         if(naamloos != null)
         {
-            naamloos.src="include/angery.png";
+            naamloos.src="include/angery.jpg";
             naamloos.id = "naamshake";
         }
     }
