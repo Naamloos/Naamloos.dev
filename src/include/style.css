@@ -17,6 +17,8 @@ body
     font-family: 'Roboto', sans-serif;
     color: #FFFFFF;
     animation: gradient 60s ease infinite;
+    overflow-x: hidden;
+    over
 }
 
 @keyframes gradient {
