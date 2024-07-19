@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#app
+{
+    width: 100dvw;
+    height: 100dvh;
+}
+
+#siteContent
+{
+    width: 100%;
+    min-height: 100%;
+    background-color: #0077ff;;
+	background-size: 400% 400%;
+    font-family: 'Roboto', sans-serif;
+    color: #FFFFFF;
+    animation: gradient 60s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+h1, h2, h3, h4, h5, h6
+{
+    font-family: 'Raleway', sans-serif;
+    text-align: left;
+}
