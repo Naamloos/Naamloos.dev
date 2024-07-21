@@ -13,7 +13,7 @@ class CreateUser extends Command
      *
      * @var string
      */
-    protected $signature = 'naamloos:create-user';
+    protected $signature = 'naamloos:create-user {name} {email} {password}';
 
     /**
      * The console command description.
@@ -27,9 +27,9 @@ class CreateUser extends Command
      */
     public function handle()
     {
-        $name = $this->ask('What is your name?');
-        $email = $this->ask('What is your email address?');
-        $password = $this->secret('What is the password?');
+        $name = $this->argument('name');
+        $email = $this->argument('email');
+        $password = $this->argument('password');
 
         $this->info('Creating user...');
 
