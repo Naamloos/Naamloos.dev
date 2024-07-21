@@ -9,7 +9,7 @@ services:
         depends_on:
             - db
         networks:
-            - ng-nw
+            - nginx-network
         # No mapping yet for storage but rn that's unused.
 
     db:
