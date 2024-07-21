@@ -1,0 +1,35 @@
+version: '3'
+services:
+    app:
+        build: .
+        ports:
+            - 8000:80
+        env_file:
+            - .env
+        depends_on:
+            - db
+        networks:
+            - ng-nw
+        # No mapping yet for storage but rn that's unused.
+
+    db:
+        image: mysql:8.3
+        environment: # Uses env vars from Laravel
+            - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+            - MYSQL_DATABASE=${DB_DATABASE}
+            - MYSQL_PASSWORD=${DB_PASSWORD}
+            - MYSQL_ROOT_HOST=%
+            - MYSQL_TCP_PORT=${DB_PORT}
+            - MYSQL_ALLOW_EMPTY_PASSWORD=true
+        volumes:
+            - database:/var/lib/mysql
+        networks:
+            - nginx-network
+
+volumes:
+    database:
+
+networks:
+    nginx-network:
+        name: uwu-weeb-network
+        external: true

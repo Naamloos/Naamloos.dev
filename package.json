@@ -32,6 +32,7 @@
         "@tsparticles/engine": "^3.5.0",
         "@tsparticles/react": "^3.0.0",
         "@tsparticles/slim": "^3.5.0",
+        "react-konami-code": "^2.3.0",
         "react-layout-masonry": "^1.1.0"
     }
 }

@@ -6,6 +6,7 @@ import { IOptions, RecursivePartial } from '@tsparticles/engine';
 import Masonry from 'react-layout-masonry';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faCoins, faIdCard } from '@fortawesome/free-solid-svg-icons';
+import Konami from 'react-konami-code';
 
 export default function BaseLayout({ children, year }: PropsWithChildren<any>) {
 
@@ -21,6 +22,11 @@ export default function BaseLayout({ children, year }: PropsWithChildren<any>) {
     return (
         <>
             <div id='siteContent'>
+
+                <Konami action={() => {
+                    window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                }} />
+
                 <Particles
                     options={particleOptions}
                 />
@@ -65,10 +71,18 @@ const particleOptions : RecursivePartial<IOptions> =
         zIndex: -1,
 
     },
+    interactivity: {
+        events: {
+            onClick: {
+                enable: true,
+                mode: "repulse"
+            }
+        }
+    },
     particles:
     {
         number: {
-            value: 35,
+            value: 26,
             density: {
                 enable: true,
                 width: 800,
@@ -79,13 +93,20 @@ const particleOptions : RecursivePartial<IOptions> =
             value: "#ffffff"
         },
         shape: {
-            type: "circle",
+            type: "square",
         },
         opacity: {
-            value: 0.10,
+            value: 0.05,
         },
         size: {
-            value: {min: 15, max: 40},
+            value: {min: 25, max: 60},
+            animation:
+            {
+                enable: true,
+                speed: 50,
+                startValue: 'random',
+                sync: false
+            }
         },
         line_linked: {
             enable: false
@@ -94,11 +115,10 @@ const particleOptions : RecursivePartial<IOptions> =
             enable: true,
             speed: 3,
             direction: "top",
-            random: false,
             straight: false,
             attract: {
                 enable: false,
-            }
+            },
         }
     }
 }

@@ -20,7 +20,7 @@ export default function Donate({ auth, laravelVersion, phpVersion, currentYear }
                         Donate with cash? I've linked a couple of sites that might help you with that.
                     </p>
                     <p className='pt-4'>
-                        <a href='https://paypal.me/naamloos' className='hover:opacity-50 underline'>Paypal</a>
+                        <a href='https://paypal.me/naamloosdt' className='hover:opacity-50 underline'>Paypal</a>
                     </p>
                     <p className='pt-4'>
                         <a href='https://ko-fi.com/naamloos' className='hover:opacity-50 underline'>Ko-fi</a>
