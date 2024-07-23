@@ -3,11 +3,11 @@ import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 import BaseLayout from '@/Layouts/BaseLayout';
 import Box from '@/Components/Box';
-import temp from '../../images/temp.jpg'
 import TextLayoutBox from '@/Components/TextLayoutBox';
 import ImageBox from '@/Components/ImageBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiscord, faGithub, faInstagram, faLinkedin, faSteam, faTwitter, faMastodon } from '@fortawesome/free-brands-svg-icons';
+import me from '../../images/me.jpg';
 
 export default function Index({ auth, laravelVersion, phpVersion, currentYear }: PageProps) {
     return (
@@ -24,7 +24,7 @@ export default function Index({ auth, laravelVersion, phpVersion, currentYear }:
                     </p>
                 </TextLayoutBox>
 
-                <ImageBox src={temp} />
+                <ImageBox src={me} />
 
                 <TextLayoutBox>
                     <h1 className='text-3xl pb-2'>
@@ -40,9 +40,8 @@ export default function Index({ auth, laravelVersion, phpVersion, currentYear }:
                     </p>
                 </TextLayoutBox>
 
-                <Box>
-                    <div className='bg-black bg-opacity-20 rounded-lg p-8'>
-                        <h1 className='text-3xl pb-2'>
+                <TextLayoutBox>
+                <h1 className='text-3xl pb-2'>
                             Where can you find me?
                         </h1>
                         <p className='py-2'>
@@ -74,8 +73,7 @@ export default function Index({ auth, laravelVersion, phpVersion, currentYear }:
                         <p className='pt-2'>
                             Currently not looking for a new job, but feel free to reach out to me if you think you can convince me otherwise.
                         </p>
-                    </div>
-                </Box>
+                </TextLayoutBox>
 
             </BaseLayout>
         </>

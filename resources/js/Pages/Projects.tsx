@@ -27,7 +27,7 @@ export default function Projects({ auth, laravelVersion, phpVersion, currentYear
                         DSharpPlus
                     </h1>
                     <p>
-                        DSharpPlus is a .NET Standard library for making bots using the Discord API. It started of as a continuation of DiscordSharp, but has since become much better than it's predecessor.
+                        DSharpPlus is a .NET Standard library for making bots using the Discord API. It started of as a continuation of DiscordSharp, but has since become much better than its predecessor.
                     </p>
                     <p className='pt-2'>
                         I am the lead developer of DSharpPlus, and have been working on it since 2016. It is currently one of the most popular Discord API wrappers for .NET.
@@ -99,7 +99,7 @@ export default function Projects({ auth, laravelVersion, phpVersion, currentYear
                         Obsidian is a minecraft server fully written from scratch, trying to replicate what the official minecraft server does, but more efficiently in C#.
                     </p>
                     <p className='py-2'>
-                        I am the lead developer of Obsidian, and have been working on it since 2017. It is currently one of the most popular C# minecraft servers.
+                        I am the lead developer of Obsidian, and have been working on it since february of 2019. It is currently one of the most popular C# minecraft servers.
                         It is currently not yet feature complete, but is already being used by a few people.
                     </p>
                     <p className='pt-2'>
