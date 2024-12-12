@@ -21,7 +21,7 @@ services:
             - MYSQL_TCP_PORT=3306
             - MYSQL_ALLOW_EMPTY_PASSWORD=true
         volumes:
-            - database-new:/var/lib/mysql
+            - database:/var/lib/mysql
         networks:
             - default
             - bridge
