@@ -13,7 +13,7 @@ services:
         # No mapping yet for storage but rn that's unused.
 
     db:
-        image: mysql:8.3
+        image: mysql:latest
         environment: # Uses env vars from Laravel
             - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
             - MYSQL_DATABASE=${DB_DATABASE}
