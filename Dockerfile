@@ -1,5 +1,8 @@
 # Use the official PHP image as the base image
-FROM php:8-apache
+FROM php:8.3-apache
+
+RUN apt-get update && apt-get install -y libc-client-dev libkrb5-dev && rm -r /var/lib/apt/lists/*
+RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -10,11 +13,22 @@ RUN apt-get update && apt-get install -y \
     unzip \
     wget
 
+RUN apt-get update && apt-get install -y libmagickwand-dev libmagickcore-dev; \
+    pecl install imagick; \
+    docker-php-ext-enable imagick;
+
 RUN wget https://getcomposer.org/installer -O - -q | php -- --quiet
 RUN mv composer.phar /usr/local/bin/composer
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev; \
+    docker-php-ext-configure gd --with-freetype --with-jpeg; \
+    docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd imap;
+
+RUN apt-get install -y libgmp-dev re2c libmhash-dev libmcrypt-dev file
+RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
+RUN docker-php-ext-configure gmp
+RUN docker-php-ext-install gmp
 
 # Enable Apache rewrite module
 RUN a2enmod rewrite
@@ -42,7 +56,6 @@ RUN apt-get install -y nodejs
 
 # Install dependencies
 RUN npm install
-RUN npm i --save-dev @types/lodash
 
 # Build the assets
 RUN npm run build
