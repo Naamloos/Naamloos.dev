@@ -198,6 +198,7 @@ export default function Index({
                                 <div className="md:w-1/2 flex justify-center">
                                     <img
                                         src={me}
+                                        alt="Ryan's profile picture"
                                         className="w-64 h-64 rounded-full bg-gradient-to-br from-primary to-secondary"
                                     />
                                 </div>
@@ -256,7 +257,7 @@ export default function Index({
                                         <div>
                                             <img
                                                 src={project.iconUrl}
-                                                alt={project.name}
+                                                alt={`${project.name} logo`}
                                                 className="w-20 h-20 mb-4 float-right"
                                                 style={{
                                                     objectFit: "contain",
