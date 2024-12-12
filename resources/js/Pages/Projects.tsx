@@ -14,11 +14,12 @@ import basedcord from '../../images/projects/basedcord.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+import MainLayout from '@/Layouts/MainLayout';
 
 export default function Projects({ auth, laravelVersion, phpVersion, currentYear }: PageProps) {
     return (
         <>
-            <BaseLayout year={currentYear}>
+            <MainLayout>
                 <Head title='About Me' />
 
                 <TextLayoutBox>
@@ -174,7 +175,7 @@ export default function Projects({ auth, laravelVersion, phpVersion, currentYear
                     </p>
                 </TextLayoutBox>
 
-            </BaseLayout>
+            </MainLayout>
         </>
     );
 }
