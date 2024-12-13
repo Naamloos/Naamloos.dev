@@ -35,6 +35,58 @@ class PortfolioController extends Controller
 
         Message::create($validated);
 
+        // send message to Discord webhook
+        $webhook = env('DISCORD_WEBHOOK');
+        if ($webhook) {
+            $embed = [
+            'title' => 'New Contact Message',
+            'fields' => [
+                [
+                'name' => 'Name',
+                'value' => $validated['name'],
+                'inline' => true
+                ],
+                [
+                'name' => 'Email',
+                'value' => $validated['email'],
+                'inline' => true
+                ],
+                [
+                'name' => 'Phone',
+                'value' => $validated['phone'] ?? 'N/A',
+                'inline' => true
+                ],
+                [
+                'name' => 'Message',
+                'value' => $validated['message'],
+                'inline' => false
+                ],
+                [
+                'name' => 'IP Address',
+                'value' => $validated['ip'],
+                'inline' => true
+                ],
+                [
+                'name' => 'User Agent',
+                'value' => $validated['user_agent'],
+                'inline' => false
+                ]
+            ],
+            'timestamp' => now()->toIso8601String()
+            ];
+
+            $data = ['embeds' => [$embed]];
+            $options = [
+            'http' => [
+                'header' => 'Content-Type: application/json',
+                'method' => 'POST',
+                'content' => json_encode($data)
+            ]
+            ];
+            $context = stream_context_create($options);
+            file_get_contents($webhook, false, $context);
+        }
+
         return redirect()->back()->with('messageSent', true);
     }
 }
