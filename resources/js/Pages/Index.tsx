@@ -164,6 +164,8 @@ export default function Index({
         message: ""
     })
 
+    const [isListView, setIsListView] = useState(false);
+
     useEffect(() =>
     {
         // @ts-ignore
@@ -253,29 +255,81 @@ export default function Index({
                         </div>
                     </section>
 
-                    {/* Skills Section */}
-                    <section className="py-12 my-10 bg-gray-800 rounded-lg" id="skills">
+                    {/* Technologies Section */}
+                    <section className="py-12 bg-gray-800 rounded-lg relative" id="skills">
                         <div className="container mx-auto px-6">
-                            <h2 className="text-3xl font-bold text-center mb-12">
-                                Technical Skills
+                            <h2 className="text-3xl font-bold text-center mb-4">
+                                Skills
                             </h2>
-                            <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 justify-center">
-                                {skills.map((skill) => (
-                                    <div
-                                        key={skill.name}
-                                        className="p-2 flex flex-col items-center"
-                                    >
-                                        <div className="mb-2">
-                                            {skill.iconUrl({ size: 40, color: "#fff" })}
+                            <div className="text-center mb-6">
+                                <button
+                                    onClick={() => setIsListView(!isListView)}
+                                    className="bg-gray-700 text-white text-xs px-2 py-1 rounded-lg hover:bg-gray-600 transition-colors hidden sm:inline-block"
+                                >
+                                    Toggle List View
+                                </button>
+                            </div>
+                            <div className={`whitespace-nowrap py-4 ${isListView ? 'block' : 'sm:hidden'}`}>
+                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                                    {skills.map((skill) => (
+                                        <div
+                                            key={skill.name}
+                                            className="p-2 flex flex-col items-center"
+                                        >
+                                            <div className="mb-2">
+                                                {skill.iconUrl({ size: 40, color: "#fff" })}
+                                            </div>
+                                            <h3 className="text-sm font-semibold text-center">
+                                                {skill.name}
+                                            </h3>
                                         </div>
-                                        <h3 className="text-sm font-semibold text-center">
-                                            {skill.name}
-                                        </h3>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
+                            </div>
+                            <div className={`whitespace-nowrap py-4 overflow-x-auto scrollbar-hide ${isListView ? 'hidden' : 'hidden sm:block'}`}>
+                                <div className="inline-flex animate-scroll">
+                                    {skills.map((skill) => (
+                                        <div
+                                            key={skill.name}
+                                            className="p-4 flex flex-col items-center w-52"
+                                        >
+                                            <div className="mb-4">
+                                                {skill.iconUrl({ size: 60, color: "#fff" })}
+                                            </div>
+                                            <h3 className="text-lg font-semibold text-center">
+                                                {skill.name}
+                                            </h3>
+                                        </div>
+                                    ))}
+                                    {skills.map((skill) => (
+                                        <div
+                                            key={skill.name}
+                                            className="p-4 flex flex-col items-center w-52"
+                                        >
+                                            <div className="mb-4">
+                                                {skill.iconUrl({ size: 60, color: "#fff" })}
+                                            </div>
+                                            <h3 className="text-lg font-semibold text-center">
+                                                {skill.name}
+                                            </h3>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
+                        <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-gray-800 to-transparent pointer-events-none"></div>
+                        <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-gray-800 to-transparent pointer-events-none"></div>
                     </section>
+                    {/* @ts-ignore */}
+                    <style jsx>{`
+                        @keyframes scroll {
+                            0% { transform: translateX(0); }
+                            100% { transform: translateX(-50%); }
+                        }
+                        .animate-scroll {
+                            animation: scroll 30s linear infinite;
+                        }
+                    `}</style>
 
                     {/* Projects Section */}
                     <section className="py-12 my-10 bg-gray-800 rounded-lg" id="projects">
