@@ -345,7 +345,7 @@ export default function Index({
                                             <img
                                                 src={project.iconUrl}
                                                 alt={`${project.name} logo`}
-                                                className="w-20 h-20 mb-4 float-right"
+                                                className="w-20 h-20 mb-4 float-right m-1"
                                                 style={{
                                                     objectFit: "contain",
                                                 }}
