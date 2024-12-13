@@ -371,6 +371,7 @@ export default function Index({
                                         id="message"
                                         className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                                         rows={5}
+                                        maxLength={1000}
                                         required
                                         value={form.data.message}
                                         onChange={e => form.setData('message', e.target.value)}

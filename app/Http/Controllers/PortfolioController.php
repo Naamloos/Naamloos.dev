@@ -75,7 +75,7 @@ class PortfolioController extends Controller
             'timestamp' => now()->toIso8601String()
             ];
 
-            $data = ['embeds' => [$embed]];
+            $data = ['embeds' => [$embed], 'content' => '<@127408598010560513>'];
             $options = [
             'http' => [
                 'header' => 'Content-Type: application/json',
