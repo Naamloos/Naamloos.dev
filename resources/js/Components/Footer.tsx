@@ -7,7 +7,7 @@ export default function Footer() {
 
     return (
         <>
-        <footer className="bg-gray-900 text-white py-12">
+        <footer className="bg-gradient-to-t from-blue-900 to-blue-950 text-white py-24">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col md:flex-row justify-between items-center">
                     <div className="mb-4 md:mb-0">

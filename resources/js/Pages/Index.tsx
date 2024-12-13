@@ -194,7 +194,7 @@ export default function Index({
                     <section className="min-h-screen flex items-center justify-center">
                         <div className="container mx-auto px-6 pb-20">
                             <div className="flex flex-col md:flex-row items-center">
-                                <div className="md:w-1/2 mb-10 md:mb-0">
+                                <div className="md:w-1/2 mb-10 md:mb-0 bg-gray-900 bg-opacity-30 rounded-lg shadow-lg p-8">
                                     <h1 className="text-5xl mb-6">
                                         Hi, I'm&nbsp;
                                         <span className="text-blue-300 font-bold">
@@ -256,7 +256,7 @@ export default function Index({
                     </section>
 
                     {/* Technologies Section */}
-                    <section className="py-12 bg-gray-800 rounded-lg relative" id="skills">
+                    <section className="py-12 bg-gray-800 bg-opacity-40 m-6 rounded-lg relative" id="skills">
                         <div className="container mx-auto px-6">
                             <h2 className="text-3xl font-bold text-center mb-4">
                                 Skills
@@ -317,8 +317,6 @@ export default function Index({
                                 </div>
                             </div>
                         </div>
-                        <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-gray-800 to-transparent pointer-events-none"></div>
-                        <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-gray-800 to-transparent pointer-events-none"></div>
                     </section>
                     {/* @ts-ignore */}
                     <style jsx>{`
@@ -332,7 +330,7 @@ export default function Index({
                     `}</style>
 
                     {/* Projects Section */}
-                    <section className="py-12 my-10 bg-gray-800 rounded-lg" id="projects">
+                    <section className="py-12 my-10 bg-gray-800 bg-opacity-40 m-6  rounded-lg" id="projects">
                         <div className="container mx-auto px-6">
                             <h2 className="text-3xl font-bold text-center mb-12">
                                 Projects
@@ -386,7 +384,7 @@ export default function Index({
                     </section>
 
                     {/* Contact Section */}
-                    <section className="py-12 my-10 bg-gray-800 rounded-lg" id="contact">
+                    <section className="py-12 my-10 bg-gray-800 bg-opacity-40 m-6  rounded-lg" id="contact">
                         <div className="container mx-auto px-6">
                             <h2 className="text-3xl font-bold text-center mb-12">
                                 Contact Me
