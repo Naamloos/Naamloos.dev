@@ -213,7 +213,7 @@ export default function Index({
                                             smooth={true}
                                             offset={-70}
                                             duration={500}
-                                            className="cursor-pointer bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-600 hover:shadow-lg transition-all duration-300 text-center"
+                                            className="bg-opacity-80 cursor-pointer bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-600 hover:shadow-lg transition-all duration-300 text-center"
                                         >
                                             Contact Me
                                         </Link>
@@ -223,7 +223,7 @@ export default function Index({
                                             smooth={true}
                                             offset={-70}
                                             duration={500}
-                                            className=" cursor-pointer bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-600 hover:shadow-lg transition-all duration-300 text-center"
+                                            className="bg-opacity-80 cursor-pointer bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-600 hover:shadow-lg transition-all duration-300 text-center"
                                         >
                                             View Projects
                                         </Link>
@@ -264,7 +264,7 @@ export default function Index({
                             <div className="text-center mb-6">
                                 <button
                                     onClick={() => setIsListView(!isListView)}
-                                    className="bg-gray-700 text-white text-xs px-2 py-1 rounded-lg hover:bg-gray-600 transition-colors hidden sm:inline-block"
+                                    className="bg-opacity-80 bg-gray-800 text-white text-xs px-2 py-1 rounded-lg hover:bg-gray-600 transition-colors hidden sm:inline-block"
                                 >
                                     Toggle List View
                                 </button>
@@ -339,7 +339,7 @@ export default function Index({
                                 {projects.map((project) => (
                                     <div
                                         key={project.name}
-                                        className="p-6 bg-gray-700 rounded-lg grid grid-rows-[auto,25px] gap-4"
+                                        className="p-6 bg-gray-700 bg-opacity-45 rounded-lg grid grid-rows-[auto,25px] gap-4"
                                     >
                                         <div>
                                             <img
@@ -410,7 +410,7 @@ export default function Index({
                                     <input
                                         type="text"
                                         id="name"
-                                        className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                        className="w-full px-4 py-2 bg-opacity-45 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                                         required
                                         value={form.data.name}
                                         onChange={e => form.setData('name', e.target.value)}
@@ -426,7 +426,7 @@ export default function Index({
                                     <input
                                         type="email"
                                         id="email"
-                                        className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                        className="w-full px-4 py-2 bg-opacity-45 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                                         required
                                         value={form.data.email}
                                         onChange={e => form.setData('email', e.target.value)}
@@ -442,7 +442,7 @@ export default function Index({
                                     <input
                                         type="tel"
                                         id="phone"
-                                        className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                        className="w-full px-4 py-2 bg-opacity-45 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                                         value={form.data.phone}
                                         onChange={e => form.setData('phone', e.target.value)}
                                     />
@@ -456,7 +456,7 @@ export default function Index({
                                     </label>
                                     <textarea
                                         id="message"
-                                        className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                        className="w-full px-4 py-2 bg-opacity-45 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                                         rows={5}
                                         maxLength={1000}
                                         required
