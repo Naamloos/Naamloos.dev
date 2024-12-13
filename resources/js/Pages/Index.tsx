@@ -210,7 +210,7 @@ export default function Index({
                                     smooth={true}
                                     offset={-70}
                                     duration={500}
-                                    className="text-gray-400 hover:text-white transition-colors cursor-pointer"
+                                    className="text-gray-400 hover:text-white transition-colors cursor-pointer animate-bounce"
                                 >
                                     <FontAwesomeIcon icon={faArrowDown} size="2x" />
                                 </Link>
