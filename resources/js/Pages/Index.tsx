@@ -270,16 +270,16 @@ export default function Index({
                                 </button>
                             </div>
                             <div className={`whitespace-nowrap py-4 ${isListView ? 'block' : 'sm:hidden'}`}>
-                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                                <div className="grid grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4">
                                     {skills.map((skill) => (
                                         <div
                                             key={skill.name}
-                                            className="p-2 flex flex-col items-center"
+                                            className="p-1 flex flex-col items-center"
                                         >
-                                            <div className="mb-2">
-                                                {skill.iconUrl({ size: 40, color: "#fff" })}
+                                            <div className="mb-1">
+                                                {skill.iconUrl({ size: 48, color: "#fff" })}
                                             </div>
-                                            <h3 className="text-sm font-semibold text-center">
+                                            <h3 className="text-xs font-semibold text-center">
                                                 {skill.name}
                                             </h3>
                                         </div>
