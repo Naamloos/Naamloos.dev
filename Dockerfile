@@ -13,10 +13,6 @@ RUN apt-get update && apt-get install -y \
     unzip \
     wget
 
-RUN apt-get update && apt-get install -y libmagickwand-dev libmagickcore-dev; \
-    pecl install imagick; \
-    docker-php-ext-enable imagick;
-
 RUN wget https://getcomposer.org/installer -O - -q | php -- --quiet
 RUN mv composer.phar /usr/local/bin/composer
 
