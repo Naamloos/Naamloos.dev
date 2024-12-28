@@ -29,7 +29,7 @@ class ImportFromTelescope extends Command
     public function handle()
     {
         // get 404s from telescope, and import them into the bot_catches table
-        $entries = EntryModel::where('type', EntryType::EXCEPTION)
+        $entries = EntryModel::where('type', EntryType::REQUEST)
             ->where('content->response_status', 404)
             ->get();
 
