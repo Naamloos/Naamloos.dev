@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProfileController;
+use App\Models\BotCatch;
 use App\Models\Message;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -22,6 +24,29 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::get('/attacker-endpoints', function () {
+    return BotCatch::all();
+})->name('bot-catches');
+
+Route::fallback(function (Request $request)
+{
+    $catch = BotCatch::where('endpoint', $request->path())->where('method', $request->method())->first();
+    if($catch)
+    {
+        $catch->incrementOccurences();
+    }
+    else
+    {
+        BotCatch::create([
+            'endpoint' => $request->path(),
+            'method' => $request->method(),
+            'occurences' => 1
+        ]);
+    }
+
+    return abort(404);
 });
 
 require __DIR__.'/auth.php';
