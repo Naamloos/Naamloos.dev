@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProfileController;
 use App\Models\BotCatch;
@@ -27,8 +28,14 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/attacker-endpoints', function () {
-    return BotCatch::all();
+    return BotCatch::where('invalid', 0)->get();
 })->name('bot-catches');
+
+Route::prefix('bot-catches')->middleware(['auth', 'verified'])->group(function ()
+{
+    Route::get('/', [DashboardController::class, 'showBotCatches'])->name('bot-catches-list');
+    Route::patch('/{botCatch}/toggle-invalid', [DashboardController::class, 'toggleInvalid'])->name('bot-catches-list.toggle');
+});
 
 Route::fallback(function (Request $request)
 {

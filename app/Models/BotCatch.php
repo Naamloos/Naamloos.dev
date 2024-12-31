@@ -14,17 +14,21 @@ class BotCatch extends Model
     protected $fillable = [
         'endpoint',
         'method',
-        'occurences'
+        'occurences',
+        'invalid'
     ];
 
     protected $hidden = [
         'created_at',
         'updated_at',
-        'id'
+        'id',
+        'invalid'
     ];
 
     protected $casts = [
-        'occurences' => 'integer'
+        'occurences' => 'integer',
+        'invalid' => 'boolean',
+        'id' => 'integer'
     ];
 
     public function incrementOccurences()

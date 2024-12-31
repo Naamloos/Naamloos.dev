@@ -27,6 +27,11 @@ export default function Authenticated({ user, header, children }: PropsWithChild
                                 </NavLink>
                             </div>
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink href={route('bot-catches-list')} active={route().current('bot-catches-list')}>
+                                    BotCatches
+                                </NavLink>
+                            </div>
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink newTab href="/telescope" active={false} target='_blank'>
                                     Telescope
                                 </NavLink>
@@ -100,6 +105,11 @@ export default function Authenticated({ user, header, children }: PropsWithChild
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                             Dashboard
+                        </ResponsiveNavLink>
+                    </div>
+                    <div className="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink href={route('bot-catches-list')} active={route().current('bot-catches-list')}>
+                            BotCatches
                         </ResponsiveNavLink>
                     </div>
                     <div className="pt-2 pb-3 space-y-1">
