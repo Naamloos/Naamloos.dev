@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/attacker-endpoints', function () {
-    return BotCatch::where('invalid', 0)->get();
+    return response()->json(BotCatch::where('invalid', 0)->get(), 200, [], JSON_PRETTY_PRINT);
 })->name('bot-catches');
 
 Route::prefix('bot-catches')->middleware(['auth', 'verified'])->group(function ()
