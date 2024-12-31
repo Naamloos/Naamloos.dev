@@ -10,7 +10,7 @@ class DashboardController extends Controller
 {
     public function showBotCatches()
     {
-        $botCatches = BotCatch::orderBy('id', 'desc')->makeVisible(['invalid', 'id'])->get();
+        $botCatches = BotCatch::orderBy('id', 'desc')->get()->makeVisible(['invalid', 'id']);
         return Inertia::render('Dashboard/BotCatches', [
             'botcatches' => $botCatches
         ]);
