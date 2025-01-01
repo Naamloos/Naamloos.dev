@@ -27,7 +27,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/attacker-endpoints', function () {
+Route::get('/attacker-endpoints', function (Request $request) {
+    // if user logged in, skip the check
+    if($request->header('X-Auth-Token') !== env('ATTACKER_AUTH_TOKEN') && !$request->user())
+    {
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
+
     return response()->json(BotCatch::where('invalid', 0)->get(), 200, [], JSON_PRETTY_PRINT);
 })->name('bot-catches');
 
