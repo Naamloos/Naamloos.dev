@@ -277,7 +277,7 @@ export default function Index({
                                             className="p-1 flex flex-col items-center"
                                         >
                                             <div className="mb-1">
-                                                {skill.iconUrl({ size: 48, color: "#fff" })}
+                                                {skill.iconUrl({ size: 48, color: "#fff" }) as string}
                                             </div>
                                             <h3 className="text-xs font-semibold text-center">
                                                 {skill.name}
@@ -294,7 +294,7 @@ export default function Index({
                                             className="p-4 flex flex-col items-center w-52"
                                         >
                                             <div className="mb-4">
-                                                {skill.iconUrl({ size: 60, color: "#fff" })}
+                                                {skill.iconUrl({ size: 60, color: "#fff" }) as string}
                                             </div>
                                             <h3 className="text-lg font-semibold text-center">
                                                 {skill.name}
@@ -307,7 +307,7 @@ export default function Index({
                                             className="p-4 flex flex-col items-center w-52"
                                         >
                                             <div className="mb-4">
-                                                {skill.iconUrl({ size: 60, color: "#fff" })}
+                                                {skill.iconUrl({ size: 60, color: "#fff" }) as string}
                                             </div>
                                             <h3 className="text-lg font-semibold text-center">
                                                 {skill.name}

@@ -5,7 +5,7 @@ export default function ResponsiveNavLink({ active = false, className = '', chil
     {
         return (
             <a
-                href={props.href}
+                href={props.href as string}
                 target="_blank"
                 className={`w-full flex items-start ps-3 pe-4 py-2 border-l-4 ${
                     active

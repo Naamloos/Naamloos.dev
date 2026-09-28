@@ -34,7 +34,6 @@
         "@tsparticles/react": "^4.4.0",
         "@tsparticles/slim": "^4.4.0",
         "devicons-react": "^1.5.0",
-        "react-konami-code": "^2.3.0",
         "react-layout-masonry": "^2.0.0",
         "react-scroll": "^1.9.3"
     }

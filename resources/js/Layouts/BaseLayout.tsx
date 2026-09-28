@@ -3,18 +3,18 @@ import { PropsWithChildren } from 'react';
 import Masonry from 'react-layout-masonry';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faCoins, faIdCard } from '@fortawesome/free-solid-svg-icons';
-import Konami from 'react-konami-code';
+// import Konami from 'react-konami-code';
 
-const KonamiComponent = (Konami as typeof Konami & { default?: typeof Konami }).default ?? Konami;
+// const KonamiComponent = (Konami as typeof Konami & { default?: typeof Konami }).default ?? Konami;
 
 export default function BaseLayout({ children, year }: PropsWithChildren<any>) {
     return (
         <>
             <div id='siteContent'>
 
-                <KonamiComponent action={() => {
+                {/* <KonamiComponent action={() => {
                     window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-                }} />
+                }} /> */}
 
                 <nav className='w-full h-12 bg-black/25 text-center flex items-center justify-center'>
                     <span className='text-white inline-block mx-3'>
