@@ -19,7 +19,7 @@ RUN mv composer.phar /usr/local/bin/composer
 # Install PHP extensions
 RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev; \
     docker-php-ext-configure gd --with-freetype --with-jpeg; \
-    docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd imap;
+    docker-php-ext-install pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd imap;
 
 RUN apt-get install -y libgmp-dev re2c libmhash-dev libmcrypt-dev file
 RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
@@ -35,7 +35,7 @@ WORKDIR /var/www/html
 # Copy application code to the container
 COPY . .
 
-RUN composer update
+RUN touch database/database.sqlite
 
 # Install PHP dependencies
 RUN composer install --no-scripts --no-autoloader
@@ -44,14 +44,14 @@ RUN composer install --no-scripts --no-autoloader
 RUN composer dump-autoload --optimize
 
 # Set the permissions for storage and bootstrap/cache directories
-RUN chown -R www-data:www-data storage bootstrap/cache
+RUN chown -R www-data:www-data storage bootstrap/cache database
 
 # Install Node.js and npm
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt-get install -y nodejs
 
 # Install dependencies
-RUN npm install
+RUN npm ci
 
 # Build the assets
 RUN npm run build

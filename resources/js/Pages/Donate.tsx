@@ -1,16 +1,13 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 import BaseLayout from '@/Layouts/BaseLayout';
-import Box from '@/Components/Box';
-import temp from '../../images/temp.jpg'
 import TextLayoutBox from '@/Components/TextLayoutBox';
 
-export default function Donate({ auth, laravelVersion, phpVersion, currentYear }: PageProps) {
+export default function Donate({ currentYear }: PageProps) {
     return (
         <>
             <BaseLayout year={currentYear}>
-                <Head title='About Me' />
+                <Head title='Donate' />
 
                 <TextLayoutBox>
                     <h1 className='text-3xl pb-2'>

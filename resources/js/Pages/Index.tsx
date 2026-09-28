@@ -194,7 +194,7 @@ export default function Index({
                     <section className="min-h-screen flex items-center justify-center">
                         <div className="container mx-auto px-6 pb-20">
                             <div className="flex flex-col md:flex-row items-center">
-                                <div className="md:w-1/2 mb-10 md:mb-0 bg-gray-900 bg-opacity-30 rounded-lg shadow-lg p-8">
+                                <div className="md:w-1/2 mb-10 md:mb-0 bg-gray-900/30 rounded-lg shadow-lg p-8">
                                     <h1 className="text-5xl mb-6">
                                         Hi, I'm&nbsp;
                                         <span className="text-blue-300 font-bold">
@@ -213,7 +213,7 @@ export default function Index({
                                             smooth={true}
                                             offset={-70}
                                             duration={500}
-                                            className="bg-opacity-80 cursor-pointer bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-600 hover:shadow-lg transition-all duration-300 text-center"
+                                            className="cursor-pointer bg-gray-800/80 text-white px-6 py-3 rounded-lg hover:bg-gray-600 hover:shadow-lg transition-all duration-300 text-center"
                                         >
                                             Contact Me
                                         </Link>
@@ -223,7 +223,7 @@ export default function Index({
                                             smooth={true}
                                             offset={-70}
                                             duration={500}
-                                            className="bg-opacity-80 cursor-pointer bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-600 hover:shadow-lg transition-all duration-300 text-center"
+                                            className="cursor-pointer bg-gray-800/80 text-white px-6 py-3 rounded-lg hover:bg-gray-600 hover:shadow-lg transition-all duration-300 text-center"
                                         >
                                             View Projects
                                         </Link>
@@ -256,7 +256,7 @@ export default function Index({
                     </section>
 
                     {/* Technologies Section */}
-                    <section className="py-12 bg-gray-800 bg-opacity-40 m-6 rounded-lg relative" id="skills">
+                    <section className="py-12 bg-gray-800/40 m-6 rounded-lg relative" id="skills">
                         <div className="container mx-auto px-6">
                             <h2 className="text-3xl font-bold text-center mb-4">
                                 Skills
@@ -264,7 +264,7 @@ export default function Index({
                             <div className="text-center mb-6">
                                 <button
                                     onClick={() => setIsListView(!isListView)}
-                                    className="bg-opacity-80 bg-gray-800 text-white text-xs px-2 py-1 rounded-lg hover:bg-gray-600 transition-colors hidden sm:inline-block"
+                                    className="bg-gray-800/80 text-white text-xs px-2 py-1 rounded-lg hover:bg-gray-600 transition-colors hidden sm:inline-block"
                                 >
                                     Toggle List View
                                 </button>
@@ -330,7 +330,7 @@ export default function Index({
                     `}</style>
 
                     {/* Projects Section */}
-                    <section className="py-12 my-10 bg-gray-800 bg-opacity-40 m-6  rounded-lg" id="projects">
+                    <section className="py-12 my-10 bg-gray-800/40 m-6  rounded-lg" id="projects">
                         <div className="container mx-auto px-6">
                             <h2 className="text-3xl font-bold text-center mb-12">
                                 Projects
@@ -339,7 +339,7 @@ export default function Index({
                                 {projects.map((project) => (
                                     <div
                                         key={project.name}
-                                        className="p-6 bg-gray-700 bg-opacity-45 rounded-lg grid grid-rows-[auto,25px] gap-4"
+                                        className="p-6 bg-gray-700/45 rounded-lg grid grid-rows-[auto,25px] gap-4"
                                     >
                                         <div>
                                             <img
@@ -384,7 +384,7 @@ export default function Index({
                     </section>
 
                     {/* Contact Section */}
-                    <section className="py-12 my-10 bg-gray-800 bg-opacity-40 m-6  rounded-lg" id="contact">
+                    <section className="py-12 my-10 bg-gray-800/40 m-6  rounded-lg" id="contact">
                         <div className="container mx-auto px-6">
                             <h2 className="text-3xl font-bold text-center mb-12">
                                 Contact Me
@@ -410,7 +410,7 @@ export default function Index({
                                     <input
                                         type="text"
                                         id="name"
-                                        className="w-full px-4 py-2 bg-opacity-45 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                        className="w-full px-4 py-2 bg-gray-700/45 text-white rounded-lg focus:outline-hidden focus:ring-2 focus:ring-primary"
                                         required
                                         value={form.data.name}
                                         onChange={e => form.setData('name', e.target.value)}
@@ -426,7 +426,7 @@ export default function Index({
                                     <input
                                         type="email"
                                         id="email"
-                                        className="w-full px-4 py-2 bg-opacity-45 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                        className="w-full px-4 py-2 bg-gray-700/45 text-white rounded-lg focus:outline-hidden focus:ring-2 focus:ring-primary"
                                         required
                                         value={form.data.email}
                                         onChange={e => form.setData('email', e.target.value)}
@@ -442,7 +442,7 @@ export default function Index({
                                     <input
                                         type="tel"
                                         id="phone"
-                                        className="w-full px-4 py-2 bg-opacity-45 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                        className="w-full px-4 py-2 bg-gray-700/45 text-white rounded-lg focus:outline-hidden focus:ring-2 focus:ring-primary"
                                         value={form.data.phone}
                                         onChange={e => form.setData('phone', e.target.value)}
                                     />
@@ -456,7 +456,7 @@ export default function Index({
                                     </label>
                                     <textarea
                                         id="message"
-                                        className="w-full px-4 py-2 bg-opacity-45 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                        className="w-full px-4 py-2 bg-gray-700/45 text-white rounded-lg focus:outline-hidden focus:ring-2 focus:ring-primary"
                                         rows={5}
                                         maxLength={1000}
                                         required
