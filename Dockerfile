@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libgmp-dev \
+    libsqlite3-dev \
     zip \
     unzip \
     curl \
@@ -16,22 +17,22 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Configure and install PHP extensions
 RUN docker-php-ext-configure gd \
-    --with-freetype \
-    --with-jpeg \
+        --with-freetype \
+        --with-jpeg \
     && docker-php-ext-install -j"$(nproc)" \
-    pdo_mysql \
-    pdo_sqlite \
-    mbstring \
-    exif \
-    pcntl \
-    bcmath \
-    gd \
-    gmp
+        pdo_mysql \
+        pdo_sqlite \
+        mbstring \
+        exif \
+        pcntl \
+        bcmath \
+        gd \
+        gmp
 
 # Enable Apache modules
 RUN a2enmod rewrite
 
-# Install Composer from the official Composer image
+# Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 
 # Install Node.js 20
@@ -40,13 +41,11 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y --no-install-recommends nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
 WORKDIR /var/www/html
 
-# Copy application
 COPY . .
 
-# Create SQLite database if it doesn't exist
+# Create SQLite database
 RUN mkdir -p database \
     && touch database/database.sqlite
 
@@ -56,23 +55,21 @@ RUN composer install \
     --prefer-dist \
     --optimize-autoloader
 
-# Install frontend dependencies
-RUN npm ci
+# Install JS dependencies and build assets
+RUN npm ci \
+    && npm run build
 
-# Build frontend assets
-RUN npm run build
-
-# Set Laravel permissions
+# Permissions
 RUN chown -R www-data:www-data \
-    storage \
-    bootstrap/cache \
-    database \
+        storage \
+        bootstrap/cache \
+        database \
     && chmod -R 775 \
-    storage \
-    bootstrap/cache \
-    database
+        storage \
+        bootstrap/cache \
+        database
 
-# Point Apache document root at Laravel's public directory
+# Point Apache to Laravel public/
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
 RUN sed -ri \
