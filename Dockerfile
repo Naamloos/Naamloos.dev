@@ -1,66 +1,86 @@
-# Use the official PHP image as the base image
-FROM php:8.3-apache
+FROM php:8.5-apache
 
-RUN apt-get update && apt-get install -y libc-client-dev libkrb5-dev && rm -r /var/lib/apt/lists/*
-RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
+# Install system dependencies and PHP build dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libgmp-dev \
     zip \
     unzip \
-    wget
+    curl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN wget https://getcomposer.org/installer -O - -q | php -- --quiet
-RUN mv composer.phar /usr/local/bin/composer
+# Configure and install PHP extensions
+RUN docker-php-ext-configure gd \
+    --with-freetype \
+    --with-jpeg \
+    && docker-php-ext-install -j"$(nproc)" \
+    pdo_mysql \
+    pdo_sqlite \
+    mbstring \
+    exif \
+    pcntl \
+    bcmath \
+    gd \
+    gmp
 
-# Install PHP extensions
-RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev; \
-    docker-php-ext-configure gd --with-freetype --with-jpeg; \
-    docker-php-ext-install pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd imap;
-
-RUN apt-get install -y libgmp-dev re2c libmhash-dev libmcrypt-dev file
-RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
-RUN docker-php-ext-configure gmp
-RUN docker-php-ext-install gmp
-
-# Enable Apache rewrite module
+# Enable Apache modules
 RUN a2enmod rewrite
 
-# Set the working directory in the container
+# Install Composer from the official Composer image
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
+
+# Install Node.js 20
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
 WORKDIR /var/www/html
 
-# Copy application code to the container
+# Copy application
 COPY . .
 
-RUN touch database/database.sqlite
+# Create SQLite database if it doesn't exist
+RUN mkdir -p database \
+    && touch database/database.sqlite
 
 # Install PHP dependencies
-RUN composer install --no-scripts --no-autoloader
+RUN composer install \
+    --no-interaction \
+    --prefer-dist \
+    --optimize-autoloader
 
-# Generate the autoload files
-RUN composer dump-autoload --optimize
-
-# Set the permissions for storage and bootstrap/cache directories
-RUN chown -R www-data:www-data storage bootstrap/cache database
-
-# Install Node.js and npm
-RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
-RUN apt-get install -y nodejs
-
-# Install dependencies
+# Install frontend dependencies
 RUN npm ci
 
-# Build the assets
+# Build frontend assets
 RUN npm run build
 
-# Set the document root for Apache
-RUN sed -i -e 's/html/html\/public/g' /etc/apache2/sites-available/000-default.conf
+# Set Laravel permissions
+RUN chown -R www-data:www-data \
+    storage \
+    bootstrap/cache \
+    database \
+    && chmod -R 775 \
+    storage \
+    bootstrap/cache \
+    database
 
-# Expose port 80
+# Point Apache document root at Laravel's public directory
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+
+RUN sed -ri \
+    -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
+    /etc/apache2/sites-available/*.conf \
+    /etc/apache2/apache2.conf \
+    /etc/apache2/conf-available/*.conf
+
 EXPOSE 80
 
-# Start Apache
 CMD ["apache2-foreground"]
