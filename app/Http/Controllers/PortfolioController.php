@@ -13,7 +13,7 @@ class PortfolioController extends Controller
     public function index()
     {
         $messageSent = session('messageSent', false);
-        return Inertia::render('Index2', [
+        return Inertia::render('Home', [
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
             'currentYear' => date('Y'),
